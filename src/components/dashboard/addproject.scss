@@ -1,0 +1,201 @@
+.k-animation-container {
+    z-index: 999999 !important;
+}
+
+.modal-body {
+    background-color: #fff;
+    color: #333;
+    border-radius: 0;
+    padding: 0!important;
+    padding-left: 20px!important;
+    padding-bottom: 25px!important;
+}
+.error {
+    color: #c00000 !important;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    font-weight: 500;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.modal-header {
+    background-color: #071e62;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif!important;
+    font-weight: 600;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 0;
+    height: 40px;
+    padding: 0!important;
+    padding-left: 20px!important;
+    padding-right: 6px!important;
+    padding-top: 7px!important;
+    padding-bottom: 2px!important;
+}
+.modal-popup-header {
+    background-color: #e5e5e5!important;
+    color: #333!important;
+    text-align: left;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    cursor: not-allowed;
+    background-color: #eee;
+    opacity: 1;
+}
+.k-form, .k-form-inline {   
+
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    margin: 20px;
+}
+.delete-popup {
+
+
+    .k-form, .k-form-inline {  
+        width: 350px;    
+        padding: 6px 12px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        margin: 20px;
+    }
+}
+.k-textbox, .k-input.k-textbox, .k-textarea {
+    border-radius: 2px;
+    padding: 4px 8px;
+    width: 12.4em;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    outline: 0;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.4285714286;
+    display: inline-flex;
+    vertical-align: middle;
+    position: relative;
+    -webkit-appearance: none;
+}
+
+.dialog-dimensions{
+    display: flex;
+    width:50%;
+    padding:7px 15px 0px;
+    font-weight: normal;
+    color:black;
+
+}
+
+.dialog-but {
+    float: right;
+    padding-top: 18px;
+}
+
+.k-form-inline {
+    margin: 30px 0px;
+}
+.k-form-field{
+    padding: 0px 15px;
+}
+.errorMsg {
+    display: block;
+    color: #c00000;
+
+}
+.label.error {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif!important;
+    font-weight: 400!important;
+    font-size: 14px;
+}
+label {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+.message{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+.disable{
+    cursor: not-allowed;
+}
+
+.k-button .k-primary{   
+        border: 1px solid #152c73;
+        padding: 8px;
+        color: #fff;
+        background-color: #152c73;
+        border-radius: 4px;
+}
+
+form[name="CustomerListForm"] .dropdownButton .dropdown-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(5%, 145%);
+    width: 195px;
+    min-height: 120px;
+}
+
+form[name="CustomerListForm"] .dropdownButton .eButton {
+    background-color: #152c73;
+    color: #ffffff;
+}
+
+form[name="CustomerListForm"] .dropdownButton .eButton:hover {
+    background-color: #2041ac;
+    border-color: #2041ac;
+    color: #ffffff;
+}
+/* set css for button disabled state*/
+form[name="CustomerListForm"] .dropdownButton .eButton[disabled], 
+.eButtonPrimary[disabled],
+.eButtonPrimary[disabled]:hover { 
+    background-color: #e5e5e5;
+    color: #000;
+    border: 1px #e5e5e5 solid;
+    cursor: not-allowed;
+}
+
+form[name="CustomerListForm"] .k-textbox:focus {
+    border-color: #843534;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
+}
+.edit-button {
+    float: right;
+    cursor: pointer;
+}
+.modalDialog {
+    .k-dialog-wrapper {
+        z-index: 999999;
+    }
+}
+.alreadyExistsMsg{
+    color: #c00000!important;
+    font-size: medium;
+    padding-bottom: 15px;
+}

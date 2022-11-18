@@ -1,0 +1,201 @@
+@import './../../assets/css/variables.scss';
+
+.command-bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+
+    h1 {
+        color: $color-btn;
+        font-weight: 300; 
+        font-size: 21px;
+        margin: 0;
+    }
+    .cmdbar-right {
+        .eButton {
+            column-gap: 8px;
+            display: flex;
+        }
+    }
+}
+
+.Projectdetailgrid .k-grid-table-p {
+    height: calc(100vh - 390px);
+    & > .k-grid-header {  
+        .k-i-sort-asc-sm {
+            color: #152c73;
+        }    
+        .k-header {
+            vertical-align: baseline;
+            & > .k-link {
+                font-weight: 600;
+                font-size: 13px;
+                padding:8px 8px;
+                color: #152c73;
+                text-overflow: clip;
+                outline: 0;
+                line-height: inherit;
+                word-break: break-word !important;
+                vertical-align: middle;
+                height: 40px;
+                word-spacing: normal;
+                white-space: normal;
+                            .k-icon {
+                    color: $color-btn
+                }
+            }
+        }
+        .k-header:last-child {
+            & > .k-link {
+                font-weight: 600;
+                font-size: $font-14;
+                padding: 8px 12px;
+                color: black;
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                outline: 0;
+                line-height: inherit;
+                cursor: default;
+                
+                .k-icon {
+                    color: $color-btn
+                }
+            }
+        }
+    }
+    .k-grid-container {
+        min-height: 165px;
+        .k-grid-content {
+            overflow-y: scroll;
+        }
+        tr.k-state-selected {
+            & > td {
+                background-color: transparent;
+            }
+        }
+        
+    }
+    .k-checkbox:focus+.k-checkbox-label::before {
+        box-shadow: 0 0 0 2px rgba(0,0,0,0.06);
+    }
+    .k-checkbox:checked+.k-checkbox-label::after, .k-checkbox:indeterminate+.k-checkbox-label::after {
+        background-color: #152c73;
+        color:white;
+    }
+    .k-checkbox:checked+.k-checkbox-label::before {
+        background-color:   #152c73;
+        color: white;
+        border-color:hsl(20, 2%, 64%);  
+    }
+    .k-grid-pager {
+        .k-pager-numbers {
+            color: #333;
+            .k-link {
+                color: #333;
+                &.k-state-selected {
+                    color: #fff;
+                    border: 1px solid #d1d1d1;
+                    background-color: #8c8c8c;
+                }
+            }
+        }
+    }
+    .ActionLinkContainer {
+        .ActionLink {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            color: $color-btn;
+        }
+        .NotLink {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+            font-size: 16px;
+            color: $color-btn;
+        }
+        .disable{
+            color: darkgrey;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+            font-size: 16px;
+            pointer-events: none;
+            cursor: not-allowed;
+        }    
+    }
+}
+
+.backbutton {
+    margin-bottom: 0.5rem !important;
+}
+
+.Projectdetailgrid .k-grid td {
+    font-size: 14px !important;
+}
+
+.Projectdetailgrid .k-content.k-window-content.k-dialog-content {
+    margin-top: 0;
+}
+.Projectdetailgrid ul.k-tabstrip-items.k-reset {
+    display: none;
+}
+label.k-radio-label.selectProject::after {
+    background-color: #3f51b5 !important;
+}
+label.k-radio-label.selectProject::before {
+    border-color: rgba(0,0,0,0.54) !important;
+    background-color: #fff !important;
+}
+.k-grid td .EditCell input {
+   width: 100%;
+   border: 0 none;
+   background-color: transparent;
+   color: #2041ac;
+}
+.k-grid td .EditCell input:focus {
+    background-color: #fff;
+    color: #2041ac;
+ }
+.Edit-details {
+    .k-animation-container {
+        z-index: 0 !important;
+    }
+    .k-link.k-state-selected {
+        background-color: #071E62 !important;
+    }
+}
+.activeInput span.eerorMessage {
+    font-size: 13px;
+    color: red;
+}
+.k-checkbox+.k-checkbox-label {
+    margin-left: 0px;
+}
+
+.compareSelectWithLabel {
+    display: flex;
+    justify-content: center;
+}
+
+.rightZero {
+    right: 0px;
+}
+.zeroMarginRight {
+    margin-right: 0px !important;
+}
+
+.projectInfoSelectionLeftMargin {
+    margin-left: 8px;
+}
+
+.action-left {
+    flex-flow: row-reverse;
+}
+.batchUpgradeTitle {
+    padding-top: 10px;
+    margin-left: 30px;
+}

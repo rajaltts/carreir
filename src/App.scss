@@ -1,0 +1,621 @@
+@import './assets/css/variables.scss';
+@import './components/dashboard/addproject.scss';
+
+*::selection {
+    background-color: #3297FD !important;
+    color: #ffffff !important;
+}
+body {
+    margin: 0;
+    padding: 100px 0 0;
+    font-family: $font-family;
+    font-size: $font-14;
+    overflow-y: auto;
+    header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 9999;
+    }
+  
+}
+.container {
+    margin: 0 auto;
+    width: 1170px;
+    padding-left: 15px;
+    padding-right: 15px;
+    @media screen and (max-width: 1200px) {
+        width: 90%;
+        max-width: 1170px;
+    }
+}
+
+.App-Tab {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+}
+
+.eButtonGradient {
+    background: linear-gradient(99.7deg, #15205E -19.43%, #0076F4 80.93%);
+    color: $color-white !important;
+    .caret {
+        border-top-color: $color-white !important;
+    }
+}
+
+.eButton {
+    background-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid $color-btn;
+    color: $color-btn;
+    cursor: pointer;
+    min-height: 40px;
+    &:hover {
+        background-color: $color-blue;
+        border-color: $color-blue;
+        color: $color-white;
+        .caret {
+            border-top-color: $color-white;
+        }
+    }
+    &:focus {
+        outline: none;
+    }
+    svg {
+        font-size: 16px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .caret {
+        border-top-color: $color-btn;
+    }
+}
+
+.eButtonPrimary {
+    background-color:$color-btn;
+    color: $color-white;
+    margin-right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid $color-btn;
+    cursor: pointer;
+    &:hover {
+        background-color: $color-blue;
+        border-color: $color-blue;
+        color: $color-white;
+        .caret {
+            border-top-color: $color-white;
+        }
+    }
+    &:focus {
+        outline: none;
+    }
+    svg {
+        font-size: 16px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .caret {
+        border-top-color: $color-btn;
+    }
+}
+.section-wrapper {
+    margin: -10px 0 60px;
+}
+
+.horizontal-menu {
+    display: flex;
+}
+.about {
+    .k-dialog {
+        width: 500px;
+        .k-header {
+            span {
+                color: rgb(51, 51, 51);
+            }
+            .k-dialog-actions {
+                span {
+                    color: #656565;
+                    font-size: 20px;
+                }
+            }
+        }
+        .k-dialog-content {
+            margin-top: 0;
+            .k-form-inline {
+                width: calc(500px - 70px);
+                padding: 20px;
+                margin: 0;
+                span {
+                    color: rgb(51, 51, 51);
+                }
+                div {
+                    display: flex;
+                    p {
+                        margin: 0;
+                        &:first-child {
+                            width: 250px;
+                        }
+                    }
+                    dl {
+                        width: 100%;
+                        dd {
+                            background: #152c73;
+                            color: #ffffff;
+                            margin: 5px 0;
+                            padding: 5px 40px;
+                            span {
+                                color:#ffffff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin dropdown-li-common {
+    cursor: pointer;
+    color:$color-btn;
+    font-size: $font-13;
+    &:hover {
+        background-color: $color-blue;
+        color: $color-white;
+    }
+    &.active {
+        background-color: $color-green;
+        color: $color-white;
+    }
+    img {
+        margin-right: 3px;
+        vertical-align: middle;
+    }
+}
+
+@mixin listCategory {
+    padding: 0px 8px !important;
+}
+
+.helpAndLibrary-li-child {
+    cursor: default !important;
+    font-weight: bold !important;
+    color: $color-black !important;
+    padding: 3px 0px !important;
+    &:hover {
+        background-color: transparent !important;
+        color: $color-black;
+    }
+    &.active {
+        background-color: transparent !important;
+        color: $color-black;
+    }
+    .listDisabled {
+        pointer-events: none;
+        cursor: not-allowed !important;
+        color: #a9a9a9 !important;
+    }
+    .sub-category {
+        margin: 0px 8px 0px 18px;
+    }
+    .dropdown-sub-menu {
+        list-style: none;
+        padding: 0px;
+        margin-top: 0.5rem;
+
+        li {
+            padding: 3px 8px 3px 36px !important;
+            font-weight: normal;
+            @include dropdown-li-common
+        }
+    }
+}
+.dialog-but.center {
+    float: none;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    .eButtonPrimary {
+        margin: 0 10px;
+    }
+}
+.dropdownButton {
+    display: inline-block;
+    position: relative;
+
+    .dropdown-sub-menu {
+        list-style: none;
+        padding: 0px;
+        margin-top: 2px;
+
+        li {
+            padding: 8px 18px;
+            font-weight: normal;
+            @include dropdown-li-common
+        }
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: auto;
+        left: 0;
+        width: 180px;
+        min-height: 180px;
+        background-color: $color-white;        
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        z-index: 999;
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        border: 1px solid grey;
+
+        .category {
+            @include listCategory;
+        }
+
+        .dropdown-li-child {
+            padding: 8px 0px;
+            padding-bottom: 0;
+            cursor: default;
+            font-weight: bold;
+            color:$color-black;
+            font-size: $font-13;
+            .category {
+                @include listCategory;
+            }
+            img {
+                margin-right: 3px;
+                vertical-align: middle;
+            }
+            &:hover {
+                background-color: transparent;
+                color: $color-black;
+            }
+            &.active {
+                background-color: transparent;
+                color: $color-black;
+            }
+        }
+
+        > li {
+            padding: 8px;
+            font-weight: bold;
+            @include dropdown-li-common
+        }
+    }
+}
+
+.searchContainerProject {
+    display: flex;
+    position: relative;
+    border: 1px solid #ccc;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    overflow: hidden;
+    font-size: 16px;
+    width: 250px;
+}
+  
+.searchIconProject {
+    padding: 0.5rem;
+    font-size: 16px;
+    color: #152c73;
+    position: inherit;
+    flex-direction: row-reverse;
+    cursor: pointer;
+}
+
+.searchBox {
+    border: 0;    
+    flex: 1;
+    width: 234px;
+    padding: 0px 0.5rem;
+}
+
+.searchdropdown{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    cursor: default;
+}   
+
+.saveAndAddDropwDown {
+    position: fixed !important;
+    height: 125px;
+}
+.searchDropdownButton {
+    display: inline-block;
+    position: relative;
+
+    .dropdown-menu {
+        position: absolute;
+        top: auto;
+        right: -4px;
+        background-color: $color-white;
+        margin: 0;
+        color: $color-black;
+        padding: 0;
+        width:111px;
+        list-style: none;
+        z-index: 999;
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+ 
+        li {
+            padding: 8px;
+            cursor: pointer;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            &.active {
+                color: $color-white;
+            }
+            img {
+                margin-right: 3px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.eButtonsimple{
+    background-color: transparent;
+    border: unset;
+    color: $color-black;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 7px;   
+    height: 36px;
+    cursor: pointer;   
+    svg {
+        font-size: 16px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .caret {
+        border-top-color: $color-black;
+    }
+}
+
+.k-pager-nav:hover {
+    color: #152c73 !important;
+}
+
+.eButtondisable {
+    background-color: #e5e5e5;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px #e5e5e5 solid;
+    color: $color-btn;
+    cursor: not-allowed;
+    pointer-events: none;
+    margin-left: 10px;
+    min-height: 40px;
+    svg {
+        font-size: 16px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .caret {
+        border-top-color: $color-btn;
+    }
+}
+
+.ErrorNotification{
+    border-color: red !important;
+    color: red !important;
+}
+
+.SuccessNotification{
+    border-color: green !important;
+    color: green !important;
+}
+
+.InfoNotification {
+    border-color: rgb(0, 132, 255) !important;
+    color: rgb(0, 132, 255) !important;
+}
+
+.WarningNotification {
+    border-color: #ffa500 !important;
+    color: #ffa500 !important;
+}
+.Notification {
+    display: flex;
+    border-style: solid;
+    height: 50px;
+    border-width: 10px 1px 1px 1px;
+    border-radius: 0 0 7px 7px;
+    align-items: center;
+    padding: 0px 10px;
+    box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.075);
+    z-index: 999999;
+    position: fixed;
+    background-color: white;
+    width: 1170px;
+    max-width: calc(90% - 20px);
+    margin: 0 auto;
+}
+
+.NotificationDescription {
+    width: 98%;
+    font-weight: 500;
+    color: black !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif!important;
+    font-size: 16px;
+    padding: 7px 25px;
+    word-break: break-all;
+    max-height: 72%;
+    overflow-y: auto;
+}
+
+.NotificationIcon {
+    width: 3% !important;
+}
+
+.MuiContainer-root.App-body.MuiContainer-maxWidthLg {
+    padding: 0 !important;
+}
+
+.k-icon-notification {
+    width: 1em;
+    height: 1em;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-transform: none;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 32px !important;
+    padding: 1px;
+}
+.b-link{
+    cursor: pointer;
+}
+
+.generateLoading {
+    background-color: rgba(0,0,0,0.5); 
+    position: fixed;
+    left: 0; 
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+    p {
+        color: #fff;
+    }
+}
+
+.dashboard-grid {
+    height: calc(100vh - 275px);
+    .k-grid-header-wrap {
+        thead {
+            tr {
+                th {
+                    span {
+                        position: absolute;
+                        right: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+.App-Breadcrumbs {
+    padding: 20px 0;
+}
+.k-dialog-titlebar {
+    background-color: #e5e5e5 !important;
+    color: #333 !important;
+}
+.k-dialog-button-layout-stretched {
+    border:  none !important;
+}
+
+.k-panelbar {
+    .k-item.k-state-expanded {
+        & > .k-link {
+            background-color: $color-panel;
+            color: $color-white;
+        }
+    }
+    & > .panel-head.k-item  {
+        & > .k-link {
+            background-color: $color-panel;
+            color: $color-white;
+            padding: 10px 15px;
+            cursor: pointer;
+            &.k-state-selected {
+                color: $color-white;
+                background-color: $color-blue;
+                &:hover {
+                    background-color: $color-blue;
+                }
+            }
+            &.k-state-focused {
+                background-color: $color-panel;
+            }
+            &:hover {
+                color: $color-white;
+                background-color: $color-blue;
+            }
+            .k-icon {
+                color: $color-white;
+            }
+        }
+
+        .panel-body {
+            padding: 20px !important;
+
+            .panel-bdy-row {
+                margin-bottom: 10px;
+                display: flex;
+                .panel-bdy-title {
+                    width: 190px;
+                    display: inline-block;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+.eButtondisable {
+    margin-left: 8px !important;
+}
+
+.cmdbar-right {
+    column-gap: 8px;
+    display: flex;
+}
+.package-common-wrapper.section-wrapper {
+    margin: -44px 0 0;
+    min-height: 100vh;
+    background: #f0f0f4;
+}
+
+.package-common-wrapper.section-wrapper .container {
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+    background: #f0f0f4;
+}
+
+.header-wrapper .MuiBreadcrumbs-root {
+    margin: 14px 0 14px 40px;
+}
+
+.header-wrapper .MuiTypography-colorPrimary {
+    color: white;
+    opacity: 0.5;
+}
+
+.header-wrapper .MuiTypography-colorTextSecondary {
+    color: white;
+}
+
+.hideFooterDiv {
+    display: none;
+}

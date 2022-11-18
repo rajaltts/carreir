@@ -1,0 +1,63 @@
+.csoInputs-block {
+    width: 100%;
+    min-height: 454px;
+    margin-top: 14px;
+    .k-form-field {
+      display: flex;
+      padding: 0 20px;
+      margin-bottom: 12px;
+      .dialog-dimensions {
+        margin-top: 5px;
+        padding: 0;
+      }
+      .message {
+        width: 50%;
+        margin-top: 5px;
+        .modify-performance-map-for-tag {
+          font-weight: bold;
+          color: black;
+        }
+      }
+      .no-of-inputs {
+        .TBWLAI-container {
+          width: 100%;
+          input {
+            width: 100%;
+            box-sizing: border-box;
+          }
+        }
+      }
+    }
+    .border-bottom-line {
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .inputs-given .message {
+      flex-direction: unset;
+    }
+    .Actionbar {
+      right: 40px;
+      bottom: 40px;
+      position: absolute;
+    }
+    .TBWLAI-container {
+      margin-bottom: 12px;
+    }
+    .min-max {
+      margin-bottom: 0px;
+    }
+    .dimensions-min-max {
+      align-items: flex-end;
+      flex-direction: column-reverse;
+      box-sizing: border-box;
+    }
+    .min-max-label {
+      margin: 15px;
+    }
+    .button-cancel{
+      margin-right: 20px;
+      display: inline-block;
+    }
+    .button-save{
+        float: right;
+    }
+  }

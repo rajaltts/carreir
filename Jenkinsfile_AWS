@@ -1,0 +1,102 @@
+@Library('ecat-library@develop') _
+Apiname = 'awsecatui'
+branchname = 'develop'
+pipeline {
+    agent {
+        label 'dockerslave'
+    }
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+    }
+    parameters {
+        string(name: 'BuildNo', defaultValue: getparams("defaultbuild"), description: getparams("buildnumdesc"))
+        string(name: 'MasterBuildNo', defaultValue: getparams("defaultmasterbuild"), description: getparams("masterbuildnumdesc"))
+    }
+    stages {
+        stage('Set Build Variables') {
+            steps {
+                script {
+                    Source = getparams("umsource")
+                    echo Source
+                    Target = getparams("target")
+                    echo Target
+                    configs = getjenkinvar.getJsonString(branchname)
+                    echo "getting config file"
+                    if (BuildNo.toLowerCase() == 'latest') {
+                        def paramsourcejob = getjsonvalue(configs."${Source}"."${Apiname}", "uireleasejob").replaceAll("/", "/job/")
+                        BuildNo = masterbuild.getlatestbuildnumber(paramsourcejob)
+                    }
+                    currentBuild.displayName = "${BuildNo}"
+                    getappval = getjsonvalue(configs."${Target.toLowerCase()}", "${Apiname.toLowerCase()}")
+                    emailtoval = getjenkinvar.getemailval(getappval.emailto)
+                }
+            }
+        }
+        stage('parallel 1') {
+            parallel {
+                stage('Delete previous folders') {
+                    steps {
+                        script {
+                            fileandfolderops.deletefile("${getappval.artifactzipname}.zip")
+                            fileandfolderops.deletedirectory("${getappval.buildfolder}")
+                            fileandfolderops.deletedirectory("amplify")
+                        }
+                    }
+                }
+                stage('Create Git Tag') {
+                    when {
+                        // Tag only if required
+                        expression {
+                            getappval.gittag == 'true'
+                        }
+                    }
+                    steps {
+                        script {
+                            gitops.tag(BuildNo)
+                            gitops.push(BuildNo)
+                        }
+                    }
+                }
+                stage('npm install') {
+                    steps {
+                        script {
+                            if (getappval.gittag == 'true') {
+                                gitcheckout.nosparse("refs/tags/${BuildNo}", evaluate("${getappval.gitrepo}"), getappval.gitreponame)
+                            }
+                            getjenkinvar.copyconfigfiles("${getappval.assetsconfig}")
+                            dir(getappval.gitreponame) {
+                                getjenkinvar.replacecharinfile(".\\package.json")
+                                awsdeploy.amplifypull(getappval.appname, getappval.envname, getappval.region, evaluate(getappval.awskey), evaluate(getappval.awsuser))
+                                echo "Amplify backend pull completed"
+                                npm.install()
+                            }
+                        }
+                    }
+                }
+            }//stageforparallel
+        }//stageforparallel1
+
+        stage('Deploy to Amplify') {
+            steps {
+                script {
+                    echo "deployment"
+                    bat '''			 
+                    amplify publish--yes '''
+                }
+            } //steps
+        } //stage
+    } //stages
+
+    post {
+        success {
+            emailext attachLog: true, body: '$DEFAULT_CONTENT', recipientProviders: [developers(), requestor()], replyTo: '$DEFAULT_REPLYTO', subject: '$DEFAULT_SUBJECT', to: "${emailtoval}"
+            echo "success"
+        }
+        failure {
+            emailext attachLog: true, body: '$DEFAULT_CONTENT', recipientProviders: [developers(), requestor()], replyTo: '$DEFAULT_REPLYTO', subject: '$DEFAULT_SUBJECT', to: "${emailtoval}"
+            echo "failure"
+        }
+    }//post
+}//pipeline

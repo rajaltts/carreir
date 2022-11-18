@@ -1,0 +1,73 @@
+@Library('ecat-library@develop') _
+Apiname='reactjsui'
+branchname='develop'
+pipeline {
+  agent { label "${DBNODE}" }
+  options { 
+	//  skipDefaultCheckout true
+	  disableConcurrentBuilds() 
+	  timestamps ()
+buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '10'))}
+  //  parameters 
+   // {
+     //   string(name: 'BuildNo', defaultValue: getparams("defaultbuild"), description: 'Build Number')
+//	string(name: 'MasterBuildNo', defaultValue: '', description: 'Master Build Number')
+  //  }
+  stages {
+	  stage('clean workspace') {
+      steps {
+        deleteDir()
+        checkout scm
+      }
+    }
+    stage("Set Build Name and config values"){
+     steps {
+        script {
+            //	currentBuild.displayName = "${BuildNo}"
+	    	configs=getjenkinvar.getJsonString(branchname)	
+		Target=getparams("target")
+                getappval=getjsonvalue(configs."${Target.toLowerCase()}","${Apiname.toLowerCase()}")
+                emailtoval=getjenkinvar.getemailval(getappval.emailto)	
+                //Delete previous folders
+                fileandfolderops.deletefile("${getappval.artifactzipname}.zip")
+                fileandfolderops.deletedirectory("${getappval.buildfolder}")
+                }
+           }
+    } 
+	 
+	  
+	  stage("Build project + Sonar"){
+	
+	steps {	     
+		script{
+			getjenkinvar.replacecharinfile(".\\package.json")
+			withSonarQubeEnv('Sonar') 
+				{	
+				npm.cache()
+				npm.install()
+				npm.audit()
+				npm.scriptBuild()
+				npm.sonarscanner(".\\")
+				}
+			}
+
+	     }
+	}
+	  
+	 
+	  
+  }//stages
+	
+  post {
+ 	success 
+	  {
+    //echo "success"
+	emailext attachLog: true, body: '$DEFAULT_CONTENT', recipientProviders: [developers(), requestor()], replyTo: '$DEFAULT_REPLYTO', subject: '$DEFAULT_SUBJECT', to: "${emailtoval}"
+    }
+   failure 
+	  {
+        //echo "failure"
+        emailext attachLog: true, body: '$DEFAULT_CONTENT', recipientProviders: [developers(), requestor()], replyTo: '$DEFAULT_REPLYTO', subject: '$DEFAULT_SUBJECT', to: "${emailtoval}"
+    }
+    }
+}

@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+node_modules
+/build
+
+.npmrc
+
+# builded emea package on dev
+src/components/emea-package-dev

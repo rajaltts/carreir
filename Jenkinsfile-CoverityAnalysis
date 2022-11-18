@@ -1,0 +1,69 @@
+pipeline
+{
+   agent { 
+	node {
+      label 'JENKINSSLAVE'
+	    customWorkspace 'F:\\Jenkins\\workspace\\NGECAT-Reactjs-UI-Analysis'
+
+		}
+	 }
+
+    options { disableConcurrentBuilds()
+    timestamps ()
+		skipDefaultCheckout true
+    	 	buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '10'))}
+    stages 
+    {
+    		stage('clean workspace') {
+		      steps {
+			deleteDir()
+			checkout scm
+		      }
+		    }
+    	stage('Update Yaml file')
+		  {
+			steps{
+			bat '''powershell -Command "(gc ".\\NGECAT-Reactjs-UI.yaml") -replace 'covertyServerName', '%COVERITYSERVER%'| Out-File -encoding ASCII ".\\NGECAT-Reactjs-UI.yaml""'''
+			bat '''powershell -Command "(gc ".\\NGECAT-Reactjs-UI.yaml") -replace 'portNumber', '%COVERITYPORT%'| Out-File -encoding ASCII ".\\NGECAT-Reactjs-UI.yaml""'''
+			bat '''powershell -Command "(gc ".\\NGECAT-Reactjs-UI.yaml") -replace 'covertyServerUserName', '%COVERITYUSERNAME%'| Out-File -encoding ASCII ".\\NGECAT-Reactjs-UI.yaml""'''
+			}
+		  }
+		stage('Coverity Build')
+		  {
+			steps{
+			bat '''npm cache clean --force'''
+			bat '''npm install --no-optional'''
+			bat '''npm audit fix'''
+			bat '''npm run-script build'''
+			bat label: '', script: '"F:\\Program Files\\Coverity\\Coverity Static Analysis\\bin\\cov-build.exe" --dir "%WORKSPACE%\\Coverity" --no-command --delete-stale-tus --return-emit-failures --fs-capture-search "%WORKSPACE%"'
+			//bat label: '', script: '"F:\\Program Files\\Coverity\\Coverity Static Analysis\\bin\\cov-build.exe" --dir "%WORKSPACE%\\Coverity" npm run build"'
+			}
+		  }
+		  stage('Coverity Analysis')
+		  {
+			steps{
+			bat label: '', script: '"F:\\Program Files\\Coverity\\Coverity Static Analysis\\bin\\cov-analyze.exe" --dir "%WORKSPACE%\\Coverity" --all --webapp-security --webapp-security-aggressiveness-level medium -j auto --disable-fb'
+		}
+		  }
+		  stage('Coverity Publish Reports')
+		  {
+			steps{
+		bat label: '', script: '"F:\\Program Files\\Coverity\\Coverity Static Analysis\\bin\\cov-commit-defects.exe" --dir "%WORKSPACE%\\Coverity" --host %COVERITYSERVER% --https-port %COVERITYPORT% --user %COVERITYUSERNAME% --stream "NGECAT-Reactjs-UI" --password %COVERITYPWD%'
+		bat label: '', script: '"F:\\Program Files\\Coverity\\Coverity Reports\\bin\\cov-generate-security-report.exe" "NGECAT-Reactjs-UI.yaml" --output  NGECAT-Reactjs-UI.pdf --password env:COVPWD'
+		}
+		  }	
+        
+    }
+    post
+    {
+        success
+        {
+             archiveArtifacts 'NGECAT-Reactjs-UI.pdf'
+	     emailext attachLog: true, body: '$DEFAULT_CONTENT', attachmentsPattern: 'NGECAT-Reactjs-UI.pdf', recipientProviders: [developers(), requestor()], replyTo: '$DEFAULT_REPLYTO', subject: '$DEFAULT_SUBJECT', to: '$ReactTeam,$COVERITYANALYSIS'
+        }
+        failure
+        {	
+            emailext attachLog: true, body: '$DEFAULT_CONTENT', recipientProviders: [developers(), requestor()], replyTo: '$DEFAULT_REPLYTO', subject: '$DEFAULT_SUBJECT', to: '$ReactTeam,$COVERITYANALYSIS'
+        }
+    }
+}

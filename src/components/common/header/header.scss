@@ -1,0 +1,354 @@
+@import './../../../assets/css/variables.scss';
+
+$header-height: 56px;
+$header-gradient: radial-gradient(
+	52.63% 300.89% at 49.31% 251.79%,
+	#1891f6 0%,
+	#15205e 100%
+);
+$color-bluegrey: #5c648f;
+
+header {
+	font-family: $header-font-family;
+	background: $header-gradient;
+	min-height: $header-height;
+	display: flex;
+
+	.container {
+		width: 100%;
+	}
+
+	.header-wrapper {
+		display: flex;
+		align-items: center;
+		height: $header-height;
+
+		.brand-logo {
+			display: flex;
+			height: 100%;
+			align-items: center;
+			border-right: 1px solid $color-bluegrey;
+
+			img {
+				width: 49px;
+				height: 24px;
+				vertical-align: middle;
+				padding: 10px 20px 10px 0;
+			}
+			a {
+				text-decoration: none;
+				color: $color-white;
+			}
+			.btn-home {
+				opacity: 0;
+				visibility: hidden;
+				width: 0;
+				height: 0;
+				background-color: $color-white;
+				color: $color-black;
+				display: inline-block;
+				border-radius: 4px;
+				font-size: 16px;
+			}
+		}
+
+		.header-right-content {
+			display: flex;
+			flex: 1;
+			justify-content: space-between;
+
+			nav.dropdown-right {
+				margin-left: auto;
+			}
+		}
+	}
+}
+.text-uppercase {
+	text-transform: uppercase;
+}
+.text-center {
+	text-align: center;
+}
+.caret {
+	display: inline-block;
+	border-top: 5px solid $color-white;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.helpLibraryDropdownIcon {
+	height: 22px !important;
+	width: 22px !important;
+	margin-right: 3px !important;
+	vertical-align: middle;
+}
+
+.helpAndLibraryDropDown {
+	position: relative;
+	display: flex;
+	background-color: transparent;
+	color: $color-white;
+	cursor: pointer;
+	border: none;
+	font-size: 14px;
+	padding: 0px;
+	outline: none;
+	align-items: center;
+}
+
+.dropdownMenuClass {
+	top: 62px !important;
+}
+
+.dropdown-right {
+	display: flex;
+	.dropdown {
+		position: relative;
+		margin-left: 40px;
+		display: flex;
+		align-items: center;
+
+		&#calculator {
+			margin-left: 0px;
+			button {
+				padding: 0px;
+			}
+			svg {
+				margin-right: 0;
+			}
+		}
+
+		&#profiledd {
+			margin-left: 40px;
+		}
+
+		svg {
+			margin-right: 8px;
+		}
+
+		span {
+			color: $color-black;
+			cursor: pointer;
+
+			img {
+				margin-right: 5px;
+				vertical-align: middle;
+			}
+		}
+		.dropdown-menu {
+			position: absolute;
+			top: 62px;
+			right: 0;
+			background-color: $color-white;
+			width: 200px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			z-index: 1000000 !important;
+			border-radius: 5px;
+			box-shadow: 0px 12px 10px -10px rgba(0, 118, 244, 0.1);
+			border: 1px solid rgba(167, 175, 195, 0.3);
+			font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial,
+				sans-serif;
+			li {
+				position: relative;
+				padding: 10px;
+				cursor: pointer;
+				color: $color-black;
+				font-size: $font-13;
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.04);
+				}
+				&.active {
+					font-weight: 500;
+					color: $color-lightblue;
+				}
+				&:not(:last-child) {
+					border-bottom: 1px solid #e5e7ed;
+				}
+				img {
+					margin-right: 3px;
+					vertical-align: middle;
+				}
+			}
+			.label-center {
+				display: inline-block;
+				border-radius: 10px;
+				background-color: #777;
+				color: $color-white;
+				padding: 5px 12px;
+				margin: 7px 0;
+				margin-bottom: 15px;
+				font-size: $font-13;
+				border: none;
+				outline: none;
+			}
+			.defaultCursor {
+				cursor: default;
+			}
+		}
+		.dropdown-switch-title {
+			margin: 0 0 9px;
+			color: #a7afc3;
+			font-weight: 500;
+		}
+		.dropdown-switch {
+			display: flex;
+			list-style: none;
+			padding: 0;
+
+			li {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				border: 1px solid #bac0d0;
+				box-sizing: border-box;
+				padding: 0;
+				width: 50%;
+				height: 30px;
+
+				&:first-child {
+					border-radius: 3px 0 0 3px;
+				}
+
+				&:last-child {
+					border-radius: 0 3px 3px 0;
+				}
+
+				&:not(:last-child) {
+					border-bottom-color: #bac0d0;
+				}
+
+				span {
+					color: #bac0d0;
+				}
+
+				&.active {
+					background: #1891f6;
+					border: 1px solid #1891f6;
+
+					span {
+						color: white;
+					}
+				}
+			}
+		}
+		.dropdown-menu-role {
+			position: absolute;
+			top: 163px;
+			left: 0;
+			background-color: $color-white;
+			width: 200px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			z-index: 1000000 !important;
+			border-radius: 4px;
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+			border: 1px solid grey;
+			li {
+				padding: 8px;
+				cursor: pointer;
+				color: $color-btn;
+				font-size: $font-13;
+				text-transform: capitalize;
+				&:hover {
+					background-color: $color-blue;
+					color: $color-white;
+				}
+				&.active {
+					background-color: $color-green;
+					color: $color-white;
+				}
+				img {
+					margin-right: 3px;
+					vertical-align: middle;
+				}
+			}
+			.label-center {
+				display: inline-block;
+				border-radius: 10px;
+				background-color: #777;
+				color: $color-white;
+				padding: 3px 6px;
+				margin: 12px;
+				font-size: $font-12;
+				font-weight: 700;
+			}
+		}
+	}
+}
+
+.dropdown-lang-wrapper {
+	.dropdown-toggler {
+		display: flex;
+		text-transform: capitalize;
+
+		img {
+			position: relative;
+			top: 1px;
+		}
+	}
+
+	img {
+		margin-right: 8px !important;
+		width: 14px;
+		height: 14px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	.caret {
+		margin: auto 0 auto auto;
+		transform: rotate(-90deg);
+		border-top: 4px solid $color-black;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+	}
+
+	.dropdown-lang {
+		left: -210px;
+		top: 0 !important;
+		height: 200px;
+		overflow-y: auto;
+		li {
+			text-transform: capitalize;
+		}
+	}
+}
+
+.App-Breadcrumbs ol li a {
+	text-decoration: none;
+	color: rgb(21, 44, 115);
+	&:hover {
+		text-decoration: underline;
+		color: #2041ac;
+	}
+}
+
+.user-name-button {
+	&.MuiButton-root {
+		height: 30px;
+		width: 30px;
+		min-width: 30px;
+		background: $color-lightblue;
+		border-radius: 50%;
+		font-size: 12px;
+		line-height: 14px;
+
+		&:hover {
+			background: darken($color-lightblue, 10%);
+		}
+
+		.MuiButton-label {
+			color: white;
+		}
+	}
+}
+
+.listWidth {
+	width: 250px !important;
+}

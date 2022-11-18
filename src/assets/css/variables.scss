@@ -1,0 +1,30 @@
+//colors
+$color-white: #ffffff;
+$color-primary: #262c43;
+$color-black: #333333;
+$color-blue: #2041ac;
+$color-lightblue: #1891F6;
+$color-btn: #152c73;
+$color-green: #690;
+$color-panel: #071E62;
+
+//Footer colors
+$color-lightgrey:#d2d2d2;
+
+//font family
+$font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$header-font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+// font sizes
+$font-12: 12px;
+$font-13: 13px;
+$font-14: 14px;
+$font-16: 16px;
+
+:export {
+  $whitecolor: $color-white;
+  $blackcolor: $color-black;
+  $primary: $color-primary;
+  $fontFamilyProx: $font-family;
+}

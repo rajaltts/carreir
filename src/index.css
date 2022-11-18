@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.DeleteSelections
+{
+    margin-top: 60px;
+    text-align: right;
+}
+
+.btndisabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65;
+  background-color: #e5e5e5;
+  color: #000 !important;
+  border: 1px #e5e5e5 solid;
+} 
+input:disabled,
+button:disabled {
+  cursor: not-allowed;
+}
+
+.TBWLAI-ImageContainer.error-checkbox-wrapper{
+  border: 1px solid #c00000;
+}
+
+.factoryTestMessage .k-widget.k-window.k-dialog{
+  width: 600px;
+}
+
+.sectionWrapperContainer {
+  margin: -45px 0px 0px !important;
+  padding: 0px !important;
+  width: 100% !important;
+}

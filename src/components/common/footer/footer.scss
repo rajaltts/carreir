@@ -1,0 +1,39 @@
+@import './../../../assets/css/variables.scss';
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    min-height: 35px;
+    background-color: $color-lightgrey;
+    padding: 10px 0;
+    box-sizing: border-box;
+    box-sizing: -webkit-border-box;
+    z-index: 999;
+
+    .footer-wrapper {
+        display: flex;
+        justify-content: space-between;
+        span {
+            color: $color-black;
+            font-size: $font-12;
+        }
+        a {
+            color: $color-black;
+            font-size: $font-12;
+            text-decoration: none;
+        }
+        .links {
+            a {
+                margin-right: 40px;
+            }
+        }
+    }
+    .details {
+        position:relative;
+        margin-right:88px;
+    }
+}

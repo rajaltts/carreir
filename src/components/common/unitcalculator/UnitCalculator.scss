@@ -1,0 +1,68 @@
+#UnitCalculator {
+  .MuiDialog-paperWidthSm {
+    max-width: 938px;
+    max-height: 100vh;
+  }
+  .box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+  }
+  .caret {
+    display: none;
+  }
+  .unitConvertor-control {
+    width: 439px;
+    margin: 3px;
+    float: left;
+  }
+  .unitConvertor-control-big {
+    width: 886px;
+    margin: 2px;
+    float: left;
+  }
+  .unitConvertor-control-textwidth-big {
+    width: 230px;
+    float: left;
+  }
+  .unitConvertor-control-textwidth-small {
+    width: 164px;
+    float: left;
+  }
+  .unitConvertor-textbox {
+    border-radius: 2px;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    outline: 0;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.4285714286;
+    display: inline-flex;
+    vertical-align: middle;
+    position: relative;
+    -webkit-appearance: none;
+    width: 80px;
+  }
+  .equalsTo {
+    line-height: 15px;
+    width: 21px;
+    text-align: center;
+    font-size: 26px;
+    color: #878787;
+    padding-top: 10px;
+    vertical-align: top;
+    margin-right: 25px;
+    float: right;
+  }
+  .PanelSection,
+  .SubHeader {
+    cursor: default !important;
+  }
+}
